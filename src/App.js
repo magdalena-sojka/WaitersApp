@@ -1,4 +1,4 @@
-import Footer from './components/Header/Header.js';
+import Footer from './components/Footer/Footer.js';
 import TableDetails from './components/TableDetails/TableDetails.js';
 import Header from './components/Header/Header.js';
 import Home from './components/Home/Home.js';

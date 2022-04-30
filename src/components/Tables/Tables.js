@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Tables = () => {
 
-  const tables = useSelector(getAllTables)
+  const tables = useSelector(getAllTables);
 
   return (
     <ListGroup variant="flush">
