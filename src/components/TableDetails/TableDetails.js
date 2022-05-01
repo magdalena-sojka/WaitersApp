@@ -5,19 +5,21 @@ import { useState } from 'react';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
+import shortid from 'shortid';
 
 const TableDetails = () => {
 
   const { id } = useParams();
   const table = useSelector(state => getTableById(state, parseInt(id)));
-  console.log('id', id);
+  console.log('table', table);
   const [status, setStatus] = useState(table.status);
-  console.log(table.status);
+  console.log('status', status);
   const [peopleAmount, setPeopleAmount] = useState(table.peopleAmount);
   const [maxPeopleAmount, setMaxPeopleAmount] = useState(table.maxPeopleAmount);
   const [bill, setBill] = useState(table.bill);
   
-  const availableStatus = ["Free", "Busy", "Reserved", "Cleaning"];
+  const availableStatus = ["free", "busy", "reserved", "cleaning"];
+  const includesStatus = availableStatus.filter(newStatus => newStatus !== status)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,21 +31,21 @@ const TableDetails = () => {
 
   const settingsForm = status => {
     switch (status) {
-      case "Busy":
+      case "busy":
         setBill(0);
         setStatus(status);
         break;
-      case "Cleaning":
+      case "cleaning":
         setPeopleAmount(0);
         setBill(0);
         setStatus(status);
         break;
-      case "Free":
+      case "free":
         setPeopleAmount(0);
         setBill(0);
         setStatus(status);
         break;
-      case "Reserved":
+      case "reserved":
         setBill(0);
         setStatus(status);
         break;  
@@ -73,8 +75,11 @@ const TableDetails = () => {
         <Form.Group className="mb-3 d-flex justify-content-between align-items-center col-5">
             <Form.Label className="ms-2 me-3">Status</Form.Label>
             <Form.Control as="select" onChange={e =>settingsForm(e.target.value)} >
-              {availableStatus.map((status) => (
-                availableStatus !== status ? <option key={status}>{status}</option> : ''
+              <option key={status}>{status}</option>
+              {includesStatus.map(newStatus => (
+                <option key={shortid()} value={newStatus}>
+                  {newStatus}
+                </option>
               ))}
             </Form.Control>
           </Form.Group>
@@ -89,7 +94,7 @@ const TableDetails = () => {
           <Button variant="primary" type="submit">Update</Button>
         </Form>
       </>
-    )  
+    )
 }
 
 export default TableDetails;
