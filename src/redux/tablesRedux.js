@@ -37,16 +37,16 @@ export const updateTableForm = updateTable => {
     };
 
     fetch(`http://localhost:3131/tables/${updateTable.id}`, options)
-      .then(() => dispatch(editTable(updateTable)))
+      .then(() => dispatch(editTable(updateTable)));
   }
 }
 
 const tablesReducer = (statePart = [], action) => {
   switch (action.type) {
     case UPDATE_TABLES:
-      return [...action.payload]
+      return [...action.payload];
     case EDIT_TABLE:
-      return statePart.map(table => table.id === action.payload.id ? { ...table, ...action.payload } : table)  
+      return statePart.map(table => table.id === action.payload.id ? { ...table, ...action.payload } : table);
     default:
       return statePart;
   };
