@@ -4,7 +4,6 @@ import { getTableById, updateTableForm } from '../../redux/tablesRedux.js';
 import { useState } from 'react';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
 import shortid from 'shortid';
 
 const TableDetails = () => {
@@ -66,12 +65,11 @@ const TableDetails = () => {
     }  
   }
 
-  if (!table) return <Navigate to="/" />
   return (
     <>
       <h4 className="py-3">Table {table.id}</h4>
       <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3 d-flex justify-content-between align-items-center col-5">
+        <Form.Group className="mb-3 d-flex justify-content-between align-items-center col-5">
           <Form.Label className="ms-2 me-3">Status</Form.Label>
           <Form.Control as="select" onChange={e =>settingsForm(e.target.value)} >
             <option key={status}>{status}</option>

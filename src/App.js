@@ -1,5 +1,5 @@
 import Footer from './components/Footer/Footer.js';
-import TableDetails from './components/TableDetails/TableDetails.js';
+import TableWrapper from './components/TableWrapper/TableWrapper.js';
 import Header from './components/Header/Header.js';
 import Home from './components/Home/Home.js';
 import NotFound from './components/NotFound/NotFound.js';
@@ -18,7 +18,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/table/:id" element={<TableDetails />} />
+        <Route path="/table/:id" element={<TableWrapper />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
